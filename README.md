@@ -6,6 +6,8 @@ nothing atm is my code puting that out here - 18th September
  - Delta,
  - Vega X,
  - Zeus,
+ - Evon(Coming Soon(Waiting for the bypass etc))
+
 More coming soon but i wont do many so if one want a sc of one let me know and i'll add it for yall
 
 also code isnt a virus or anything i dead ass dont care about hacking anyone
