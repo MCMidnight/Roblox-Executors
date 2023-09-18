@@ -1,0 +1,204 @@
+<UserControl
+	x:Class="VegaX.SpawnableWindows.ScriptBloxSquare" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:VegaX.SpawnableWindows">
+	<Grid>
+		<Border
+			Width="260"
+			Height="142"
+			Margin="5,0,0,5"
+			CornerRadius="5">
+			<Border.Background>
+				<ImageBrush
+					Stretch="UniformToFill"
+					RenderOptions.BitmapScalingMode="HighQuality"
+					ImageSource="VegaXScriptPlaceholder.png" />
+			</Border.Background>
+			<Grid>
+				<Border
+					Margin="0"
+					CornerRadius="5">
+					<Border.Background>
+						<ImageBrush
+							x:Name="ScriptImage"
+							Stretch="UniformToFill"
+							RenderOptions.BitmapScalingMode="HighQuality" />
+					</Border.Background>
+				</Border>
+				<Border
+					Margin="0"
+					CornerRadius="5"
+					BorderBrush="#7F646464"
+					BorderThickness="1">
+					<Border.Background>
+						<LinearGradientBrush
+							EndPoint="0.5,1"
+							StartPoint="0.5,0">
+							<GradientStop
+								Color="#7F323232"
+								Offset="0" />
+							<GradientStop
+								Offset="1"
+								Color="#00000000" />
+						</LinearGradientBrush>
+					</Border.Background>
+				</Border>
+				<Label
+					Name="ScriptName"
+					VerticalAlignment="Top"
+					Content="Dog Fight Script"
+					FontFamily="/Vega X;component/Graphics/Fonts/#Inter SemiBold"
+					FontSize="16"
+					Foreground="#DDFFFFFF"
+					Margin="5,5,5,0" />
+				<Label
+					Name="GameName"
+					VerticalAlignment="Top"
+					Content="DOG FIGHT [UPDATE]"
+					FontFamily="/Vega X;component/Graphics/Fonts/#Inter"
+					Foreground="#DDFFFFFF"
+					Margin="5,25,5,0" />
+				<Border
+					Name="KeySystemTag"
+					Background="#BFFFAC37"
+					BorderBrush="#FFFFAC37"
+					BorderThickness="1"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					Margin="10,48,0,0"
+					Visibility="Collapsed"
+					CornerRadius="5">
+					<Grid>
+						<Border
+							Background="#FFFFAC37"
+							BorderThickness="0"
+							Width="20"
+							HorizontalAlignment="Left"
+							Margin="-1,-1,0,-1"
+							CornerRadius="5">
+							<Label
+								Content=""
+								FontFamily="Segoe MDL2 Assets"
+								Foreground="#FFFFFFFF" />
+						</Border>
+						<Label
+							Content="Has Keys"
+							FontFamily="/Vega X;component/Graphics/Fonts/#Inter"
+							Foreground="#FFFFFFFF"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							Margin="24,0,4,0"
+							Padding="0"
+							FontSize="10" />
+					</Grid>
+				</Border>
+				<Border
+					Name="PatchedTag"
+					Background="#7FC33939"
+					BorderBrush="#FFC33939"
+					BorderThickness="1"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+					Margin="0,0,5,45"
+					Visibility="Collapsed"
+					CornerRadius="5">
+					<Grid>
+						<Border
+							Background="#FFC33939"
+							BorderThickness="0"
+							Width="20"
+							HorizontalAlignment="Left"
+							Margin="-1,-1,0,-1"
+							CornerRadius="5">
+							<Label
+								Content=""
+								FontFamily="Segoe MDL2 Assets"
+								Foreground="#FFFFFFFF"
+								Background="{x:Null}" />
+						</Border>
+						<Label
+							Content="Patched"
+							FontFamily="/Vega X;component/Graphics/Fonts/#Inter"
+							FontSize="10"
+							Foreground="#FFFFFFFF"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							Margin="24,0,4,0"
+							Padding="0" />
+					</Grid>
+				</Border>
+				<Border
+					Name="FavoriteScriptF"
+					HorizontalAlignment="Right"
+					Margin="0,0,5,5"
+					BorderBrush="#FFFFAC37"
+					Background="#BFFFAC37"
+					CornerRadius="5"
+					Height="35"
+					VerticalAlignment="Bottom"
+					Width="35"
+					BorderThickness="1">
+					<Grid>
+						<Label
+							Margin="0"
+							FontFamily="/Vega X;component/Graphics/Fonts/#Font Awesome 5 Free Solid"
+							Content="star"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							Foreground="#FFFFFFFF"
+							HorizontalAlignment="Left"
+							Padding="5"
+							FontSize="14"
+							Width="33" />
+						<Button
+							Name="FavoriteScriptB"
+							BorderThickness="0"
+							Background="{x:Null}"
+							BorderBrush="{x:Null}"
+							Foreground="{x:Null}" />
+					</Grid>
+				</Border>
+				<Border
+					Name="ExecuteScriptF"
+					HorizontalAlignment="Right"
+					Margin="0,0,45,5"
+					BorderBrush="#FFC33939"
+					Background="#FFC33939"
+					CornerRadius="5"
+					Height="35"
+					VerticalAlignment="Bottom">
+					<Grid>
+						<Label
+							Margin="0"
+							FontFamily="/Vega X;component/Graphics/Fonts/#Font Awesome 5 Free Solid"
+							Content="play"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							Foreground="#DDFFFFFF"
+							HorizontalAlignment="Left"
+							Padding="5"
+							FontSize="14" />
+						<Label
+							Margin="24,0,0,0"
+							FontFamily="/Vega X;component/Graphics/Fonts/#Inter SemiBold"
+							Content="Execute"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							Foreground="#DDFFFFFF"
+							HorizontalAlignment="Left"
+							Padding="5"
+							FontSize="14" />
+						<Button
+							Name="ExecuteScriptB"
+							BorderThickness="0"
+							Background="{x:Null}"
+							BorderBrush="{x:Null}"
+							Foreground="{x:Null}" />
+					</Grid>
+				</Border>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

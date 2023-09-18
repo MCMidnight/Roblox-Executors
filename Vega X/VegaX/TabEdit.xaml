@@ -1,0 +1,45 @@
+<Window
+	x:Class="VegaX.TabEdit" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:VegaX"
+	Title="TabEdit"
+	Background="#00FFFFFF"
+	AllowsTransparency="True"
+	WindowStyle="None"
+	ResizeMode="NoResize"
+	SizeToContent="WidthAndHeight"
+	ShowInTaskbar="False"
+	Width="70"
+	Height="50">
+	<Grid>
+		<Button
+			Name="Rename"
+			Content="Rename"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Width="70"
+			Height="25"
+			Background="#FF1E1E1E"
+			Padding="0"
+			BorderThickness="0"
+			Foreground="#FFFFFFFF"
+			FontFamily="/Vega X;component/Graphics/Fonts/#Inter SemiBold"
+			FontSize="12"
+			BorderBrush="{x:Null}"
+			Click="Rename_Click" />
+		<Button
+			Name="Close"
+			Content="Close Tab"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Width="70"
+			Margin="0,25,0,0"
+			Height="25"
+			Background="#FF282828"
+			Padding="0"
+			BorderThickness="0"
+			Foreground="#FFFFFFFF"
+			FontFamily="/Vega X;component/Graphics/Fonts/#Inter"
+			FontSize="12"
+			BorderBrush="{x:Null}"
+			Click="Close_Click" />
+	</Grid>
+</Window>
