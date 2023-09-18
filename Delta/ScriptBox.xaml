@@ -1,0 +1,737 @@
+<UserControl
+	x:Class="Delta.ScriptBox" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Delta">
+	<FrameworkElement.Resources>
+		<ResourceDictionary>
+			<SolidColorBrush
+				Color="#FFDDDDDD"
+				x:Key="Button.Static.Background" />
+			<SolidColorBrush
+				Color="#FF707070"
+				x:Key="Button.Static.Border" />
+			<SolidColorBrush
+				Color="#FFBEE6FD"
+				x:Key="Button.MouseOver.Background" />
+			<SolidColorBrush
+				Color="#FF3C7FB1"
+				x:Key="Button.MouseOver.Border" />
+			<SolidColorBrush
+				Color="#FFC4E5F6"
+				x:Key="Button.Pressed.Background" />
+			<SolidColorBrush
+				Color="#FF2C628B"
+				x:Key="Button.Pressed.Border" />
+			<SolidColorBrush
+				Color="#FFF4F4F4"
+				x:Key="Button.Disabled.Background" />
+			<SolidColorBrush
+				Color="#FFADB2B5"
+				x:Key="Button.Disabled.Border" />
+			<SolidColorBrush
+				Color="#FF838383"
+				x:Key="Button.Disabled.Foreground" />
+			<Style
+				x:Key="FocusVisual">
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Rectangle
+								Margin="2"
+								SnapsToDevicePixels="True"
+								Stroke="{DynamicResource SystemColors.ControlTextBrushKey}"
+								StrokeThickness="1"
+								StrokeDashArray="1 2" />
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="script">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource Button.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<Border
+								Name="border"
+								CornerRadius="8"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF1E2931">
+								<UIElement.Effect>
+									<DropShadowEffect
+										BlurRadius="16"
+										ShadowDepth="0"
+										Opacity="0.05" />
+								</UIElement.Effect>
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="Stretch"
+									Margin="0,1,-1,1"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="Stretch" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="Button.IsDefaulted"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Value="{DynamicResource SystemColors.HighlightBrushKey}"
+										Property="BorderBrush" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type CheckBox}"
+				x:Key="likes">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource Button.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type CheckBox}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary>
+									<Storyboard
+										x:Key="inandout">
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.669" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.186" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="1.036" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.655" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.138" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="0.987" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="-0.042" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.126" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.126" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.017" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.137" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.294" />
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.6"
+												Value="#FF54A1D8" />
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.8"
+												Value="#FF54A1D8" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard
+										x:Key="inandout_Copy1">
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.669" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.186" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="1.036" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.655" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.138" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="0.987" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="-0.042" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.126" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.126" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.017" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.137" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.294" />
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.6"
+												Value="#FF2C3B45" />
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.8"
+												Value="#FF2C3B45" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</ResourceDictionary>
+							</FrameworkTemplate.Resources>
+							<Border
+								Name="border"
+								CornerRadius="22"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF2C3B45"
+								Cursor="Hand">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									RenderTransformOrigin="0.5,0.5">
+									<UIElement.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform />
+											<SkewTransform />
+											<RotateTransform />
+											<TranslateTransform />
+										</TransformGroup>
+									</UIElement.RenderTransform>
+								</ContentPresenter>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="ToggleButton.IsChecked"
+									Value="True">
+									<TriggerBase.ExitActions>
+										<BeginStoryboard
+											Name="inandout_Copy1_BeginStoryboard"
+											Storyboard="{StaticResource inandout_Copy1}" />
+									</TriggerBase.ExitActions>
+									<TriggerBase.EnterActions>
+										<BeginStoryboard
+											Name="inandout_BeginStoryboard"
+											Storyboard="{StaticResource inandout}" />
+									</TriggerBase.EnterActions>
+								</Trigger>
+								<Trigger
+									Property="ToggleButton.IsChecked"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimation
+													To="#FF1E2931"
+													Duration="0:0:0.5"
+													AutoReverse="False"
+													RepeatBehavior="1x"
+													Storyboard.TargetProperty="Foreground.Color" />
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimation
+													To="#FF6A8A9F"
+													Duration="0:0:0.5"
+													AutoReverse="False"
+													RepeatBehavior="1x"
+													Storyboard.TargetProperty="Foreground.Color" />
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+									<Setter
+										TargetName="border"
+										Property="FrameworkElement.Cursor"
+										Value="Hand" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="share">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource Button.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary>
+									<Storyboard
+										x:Key="inandout">
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.669" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.186" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="1.036" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.655" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="1.138" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="0.987" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="-0.042" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.126" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.126" />
+										</DoubleAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+											Storyboard.TargetName="contentPresenter">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.3"
+												Value="0.017" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.6"
+												Value="-0.137" />
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.8"
+												Value="-0.294" />
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.6"
+												Value="#FF54A1D8" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</ResourceDictionary>
+							</FrameworkTemplate.Resources>
+							<Border
+								Name="border"
+								CornerRadius="22"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF2C3B45">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									RenderTransformOrigin="0.5,0.5">
+									<UIElement.RenderTransform>
+										<TransformGroup>
+											<ScaleTransform />
+											<SkewTransform />
+											<RotateTransform />
+											<TranslateTransform />
+										</TransformGroup>
+									</UIElement.RenderTransform>
+								</ContentPresenter>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="#FF3C5768" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="execute">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource Button.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary>
+									<Storyboard
+										x:Key="over">
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)"
+											Storyboard.TargetName="border">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.2"
+												Value="0.15" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard
+										x:Key="off">
+										<DoubleAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Panel.Background).(Brush.Opacity)"
+											Storyboard.TargetName="border">
+											<EasingDoubleKeyFrame
+												KeyTime="0:0:0.2"
+												Value="0.005" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</ResourceDictionary>
+							</FrameworkTemplate.Resources>
+							<Border
+								Name="border"
+								CornerRadius="2"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Cursor="Hand">
+								<Border.Background>
+									<SolidColorBrush
+										Color="#FF2C6E9C"
+										Opacity="0.005" />
+								</Border.Background>
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="Button.IsDefaulted"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Value="{DynamicResource SystemColors.HighlightBrushKey}"
+										Property="BorderBrush" />
+								</Trigger>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.ExitActions>
+										<BeginStoryboard
+											Name="off_BeginStoryboard"
+											Storyboard="{StaticResource off}" />
+									</TriggerBase.ExitActions>
+									<TriggerBase.EnterActions>
+										<BeginStoryboard
+											Storyboard="{StaticResource over}" />
+									</TriggerBase.EnterActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</ResourceDictionary>
+	</FrameworkElement.Resources>
+	<Grid>
+		<Button
+			HorizontalAlignment="Left"
+			Height="206"
+			VerticalAlignment="Top"
+			Width="170"
+			Style="{DynamicResource script}"
+			Margin="4,0,0,6">
+			<Grid
+				Margin="-3,0,-1,-4">
+				<Border
+					Name="imglol_Copy"
+					BorderThickness="1"
+					RenderOptions.BitmapScalingMode="HighQuality"
+					Margin="1,-2,1,0"
+					CornerRadius="8,8,0,0"
+					Height="81"
+					VerticalAlignment="Top">
+					<Border.Background>
+						<ImageBrush
+							x:Name="yesimgbrush1"
+							ImageSource="Assets/Imgs/owo.png" />
+					</Border.Background>
+				</Border>
+				<Border
+					Name="imglol"
+					BorderThickness="1"
+					RenderOptions.BitmapScalingMode="HighQuality"
+					Margin="1,-2,1,0"
+					CornerRadius="8,8,0,0"
+					Height="81"
+					VerticalAlignment="Top">
+					<Border.Background>
+						<ImageBrush
+							x:Name="yesimgbrush"
+							ImageSource="Assets/Imgs/owo.png" />
+					</Border.Background>
+				</Border>
+				<TextBlock
+					Name="titlelabel"
+					HorizontalAlignment="Left"
+					Height="22"
+					Margin="17,85,0,0"
+					TextWrapping="NoWrap"
+					Text="Loading..."
+					VerticalAlignment="Top"
+					Width="146"
+					FontFamily="/Delta;component/Assets/Fonts/#Poppins"
+					FontWeight="Bold"
+					FontSize="13"
+					Foreground="#FF7CA2BC" />
+				<TextBlock
+					Name="desclabel"
+					HorizontalAlignment="Left"
+					Height="47"
+					Margin="17,115,0,0"
+					TextWrapping="Wrap"
+					Text="Loading..."
+					VerticalAlignment="Top"
+					Width="113"
+					FontFamily="/Delta;component/Assets/Fonts/#Poppins Medium"
+					FontWeight="Bold"
+					FontSize="8"
+					Foreground="#FF7CA2BC" />
+				<CheckBox
+					Name="button"
+					HorizontalAlignment="Right"
+					Height="26"
+					Margin="0,107,12,0"
+					VerticalAlignment="Top"
+					Width="26"
+					Style="{DynamicResource likes}"
+					Background="#FF2C3B45"
+					Foreground="#FF6A8A9F"
+					BorderBrush="{x:Null}"
+					Checked="button_Checked"
+					Unchecked="button_Unchecked">
+					<Path
+						Data="M9.23439,0.448408 C8.51529,-0.263043 7.35159,0.119457 7.04649,0.949907 C6.79449,1.63501 6.46689,2.45611 6.14829,3.06046 C5.19429,4.86756 4.63809,5.89521 3.10269,7.18211 C2.87765,7.36104 2.62159,7.50195 2.34579,7.59861 C1.32879,7.97771 0.374793,8.97221 0.624093,10.1529 L0.941793,11.6531 C1.02371,12.0402 1.21816,12.398 1.50334,12.6866 C1.78852,12.9752 2.15316,13.183 2.55639,13.2868 L7.59639,14.5848 C8.13788,14.724 8.7041,14.7555 9.25915,14.6772 C9.8142,14.5989 10.346,14.4125 10.8207,14.1298 C11.2954,13.8471 11.7028,13.4743 12.0169,13.0351 C12.331,12.5959 12.545,12.0998 12.6454,11.5783 L13.2619,8.38146 C13.3327,8.01393 13.3171,7.6362 13.2163,7.27498 C13.1155,6.91375 12.9318,6.57787 12.6784,6.29107 C12.425,6.00427 12.1079,5.77356 11.7496,5.61527 C11.3913,5.45697 11.0006,5.37495 10.6051,5.37501 L9.81039,5.37501 L9.81939,5.33081 C9.89139,4.98316 9.97779,4.50631 10.0354,3.98526 C10.0939,3.46676 10.1254,2.89301 10.0795,2.35921 C10.0345,1.83561 9.91389,1.29756 9.62589,0.888707 C9.50827,0.732143 9.37734,0.584889 9.23439,0.448408"
+						Height="12"
+						Stretch="Fill"
+						Width="10"
+						Fill="{Binding Foreground, ElementName=button}" />
+				</CheckBox>
+				<Button
+					HorizontalAlignment="Right"
+					Height="26"
+					Margin="0,161,12,0"
+					VerticalAlignment="Top"
+					Width="26"
+					Style="{DynamicResource share}"
+					Background="#FF2C3B45"
+					BorderBrush="{x:Null}"
+					Click="Button_Click_1">
+					<Path
+						Data="M2.8958,10.25 C3.51535,10.2481 4.11146,9.99901 4.56534,9.5525 L8.99951,12.2353 C8.85094,12.85 8.91643,13.5008 9.184,14.0685 C9.45157,14.6363 9.90331,15.083 10.4565,15.3269 C11.0097,15.5708 11.6274,15.5956 12.1965,15.3967 C12.7655,15.1979 13.2479,14.7886 13.5553,14.244 C13.8627,13.6993 13.9745,13.0556 13.8704,12.4307 C13.7662,11.8059 13.4529,11.2417 12.9879,10.8414 C12.523,10.4411 11.9374,10.2315 11.3384,10.251 C10.7395,10.2705 10.1671,10.5177 9.72626,10.9475 L5.29209,8.26475 C5.33884,8.07725 5.36434,7.883 5.36859,7.68875 L9.72484,5.0525 C10.1443,5.45658 10.6822,5.69563 11.2484,5.72954 C11.8146,5.76345 12.3746,5.59016 12.8344,5.23874 C13.2942,4.88732 13.6259,4.37916 13.7738,3.79949 C13.9217,3.21983 13.8769,2.60395 13.6468,2.05515 C13.4167,1.50636 13.0153,1.05806 12.51,0.785451 C12.0047,0.512843 11.4263,0.432517 10.8717,0.55795 C10.3172,0.683383 9.82019,1.00694 9.46421,1.47435 C9.10823,1.94175 8.91489,2.52456 8.91663,3.125 C8.91946,3.341 8.94709,3.55625 8.99951,3.76475 L4.97334,6.2 C4.73986,5.81755 4.41642,5.50599 4.03481,5.29593 C3.6532,5.08588 3.22654,4.98455 2.79676,5.00192 C2.36697,5.01928 1.94884,5.15473 1.58346,5.39496 C1.21807,5.6352 0.917999,5.97195 0.712718,6.37212 C0.507437,6.7723 0.404012,7.22214 0.412604,7.67745 C0.421197,8.13276 0.541511,8.57787 0.761727,8.96904 C0.981943,9.36022 1.29448,9.68401 1.66864,9.90859 C2.0428,10.1332 2.4657,10.2508 2.8958,10.25"
+						Fill="#FF6A8A9F"
+						Height="11"
+						Stretch="Fill"
+						Width="10" />
+				</Button>
+				<TextBlock
+					Name="like_count"
+					HorizontalAlignment="Left"
+					Margin="135,137,0,0"
+					TextWrapping="Wrap"
+					Text="..."
+					VerticalAlignment="Top"
+					FontFamily="/Delta;component/Assets/Fonts/#Poppins SemiBold"
+					FontWeight="Bold"
+					FontSize="9"
+					Foreground="#FF7CA2BC"
+					Width="26"
+					TextAlignment="Center" />
+				<Button
+					Name="execbtn"
+					Content="Execute"
+					HorizontalAlignment="Left"
+					Height="24"
+					Margin="17,167,0,0"
+					VerticalAlignment="Top"
+					Width="61"
+					Background="#FF1E2931"
+					BorderBrush="#FF2C6E9C"
+					Style="{DynamicResource execute}"
+					BorderThickness="1.5"
+					FontFamily="/Delta;component/Assets/Fonts/#Poppins SemiBold"
+					Foreground="#FF54A1D8"
+					FontSize="10"
+					Click="Button_Click" />
+			</Grid>
+		</Button>
+	</Grid>
+</UserControl>
