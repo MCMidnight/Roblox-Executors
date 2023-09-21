@@ -10,6 +10,7 @@ nothing atm is my code puting that out here - 18th September
  - Delta,
  - Vega X,
  - Zeus,
+ - Fluxus V7,
  - Evon(Coming Soon(Waiting for the bypass etc))
 
 More coming soon but i wont do many so if one want a sc of one let me know and i'll add it for yall
