@@ -1,5 +1,9 @@
 # Roblox-Executors
-bunch of Roblox Executors what else u want there
+My Discord Server:
+ - Discord link: https://discord.gg/ya78Kqsc
+- Will give updates on when source code getting added to this page etc
+
+bunch of Roblox Executors
 for the skids and also because some people may want to know how executors work
 nothing atm is my code puting that out here - 18th September
  - Executors:
