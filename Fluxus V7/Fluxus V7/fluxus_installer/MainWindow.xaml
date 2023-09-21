@@ -1,0 +1,2236 @@
+<Window
+	x:Class="fluxus_installer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:fluxus_installer"
+	Name="window"
+	Topmost="True"
+	AllowsTransparency="True"
+	ResizeMode="NoResize"
+	Title="MainWindow"
+	Height="334.148"
+	Width="599.762"
+	WindowStyle="None"
+	WindowStartupLocation="CenterScreen"
+	Background="{x:Null}"
+	Loaded="window_Loaded">
+	<FrameworkElement.Resources>
+		<ResourceDictionary>
+			<Style
+				x:Key="FocusVisual">
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate>
+							<Rectangle
+								Margin="2"
+								SnapsToDevicePixels="True"
+								Stroke="{DynamicResource SystemColors.ControlTextBrushKey}"
+								StrokeThickness="1"
+								StrokeDashArray="1 2" />
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<SolidColorBrush
+				Color="#FFDDDDDD"
+				x:Key="Button.Static.Background" />
+			<SolidColorBrush
+				Color="#FF707070"
+				x:Key="Button.Static.Border" />
+			<SolidColorBrush
+				Color="#FFBEE6FD"
+				x:Key="Button.MouseOver.Background" />
+			<SolidColorBrush
+				Color="#FF3C7FB1"
+				x:Key="Button.MouseOver.Border" />
+			<SolidColorBrush
+				Color="#FFC4E5F6"
+				x:Key="Button.Pressed.Background" />
+			<SolidColorBrush
+				Color="#FF2C628B"
+				x:Key="Button.Pressed.Border" />
+			<SolidColorBrush
+				Color="#FFF4F4F4"
+				x:Key="Button.Disabled.Background" />
+			<SolidColorBrush
+				Color="#FFADB2B5"
+				x:Key="Button.Disabled.Border" />
+			<SolidColorBrush
+				Color="#FF838383"
+				x:Key="Button.Disabled.Foreground" />
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="topBarBTN">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource Button.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<Border
+								Name="border"
+								CornerRadius="2"
+								BorderBrush="#FF14161D"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="#FF556CDC"
+								SnapsToDevicePixels="True"
+								Margin="492,142,-492,-142">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="Button.IsDefaulted"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Value="{DynamicResource SystemColors.HighlightBrushKey}"
+										Property="BorderBrush" />
+								</Trigger>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource Button.MouseOver.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource Button.MouseOver.Border}" />
+								</Trigger>
+								<Trigger
+									Property="IsPressed"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource Button.Pressed.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource Button.Pressed.Border}" />
+								</Trigger>
+								<Trigger
+									Property="IsEnabled"
+									Value="False">
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource Button.Disabled.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource Button.Disabled.Border}" />
+									<Setter
+										TargetName="contentPresenter"
+										Property="Foreground"
+										Value="{StaticResource Button.Disabled.Foreground}" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="RoundButton">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<Border
+								Name="border"
+								CornerRadius="3"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimation
+													Duration="0:0:0.15"
+													FillBehavior="HoldEnd"
+													RepeatBehavior="1x"
+													To="#FF2D2D2D"
+													AutoReverse="False"
+													Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" />
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimation
+													Duration="0:0:0.15"
+													FillBehavior="HoldEnd"
+													RepeatBehavior="1x"
+													To="#FF232323"
+													AutoReverse="False"
+													Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" />
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="topBar">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary />
+							</FrameworkTemplate.Resources>
+							<Border
+								Name="border"
+								CornerRadius="3"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF242526"
+								BorderBrush="{TemplateBinding BorderBrush}">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<EasingColorKeyFrame
+														KeyTime="0:0:0.2"
+														Value="#FF2F2F30" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<SplineColorKeyFrame
+														KeyTime="0:0:0.1"
+														Value="#FF242526" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="bottomBar">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<Border
+								Name="border"
+								CornerRadius="2"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF265CAA"
+								BorderBrush="#FF265CAA">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<EasingColorKeyFrame
+														KeyTime="0:0:0.2"
+														Value="#FF3A70BF" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<SplineColorKeyFrame
+														KeyTime="0:0:0.1"
+														Value="#FF265CAA" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Button}"
+				x:Key="ads">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource Button.Static.Background}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Button}">
+							<Border
+								Name="border"
+								CornerRadius="2"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								SnapsToDevicePixels="True"
+								Background="#FF181A23"
+								BorderBrush="{x:Null}">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									RecognizesAccessKey="True"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<EasingColorKeyFrame
+														KeyTime="0:0:0.3"
+														Value="#FF1B1D27" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="border">
+													<SplineColorKeyFrame
+														KeyTime="0:0:0.3"
+														Value="#FF181A23" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<SolidColorBrush
+				Color="#FFFFFF"
+				x:Key="TabItem.Selected.Background" />
+			<SolidColorBrush
+				Color="#ACACAC"
+				x:Key="TabItem.Selected.Border" />
+			<Style
+				TargetType="{x:Type TabControl}"
+				x:Key="transparenttab">
+				<Setter
+					Property="Padding"
+					Value="2" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource TabItem.Selected.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource TabItem.Selected.Border}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type TabControl}">
+							<Grid
+								Name="templateRoot"
+								ClipToBounds="True"
+								SnapsToDevicePixels="True"
+								KeyboardNavigation.TabNavigation="Local">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition
+										Name="ColumnDefinition0" />
+									<ColumnDefinition
+										Name="ColumnDefinition1"
+										Width="0" />
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition
+										Name="RowDefinition0"
+										Height="Auto" />
+									<RowDefinition
+										Name="RowDefinition1"
+										Height="*" />
+								</Grid.RowDefinitions>
+								<TabPanel
+									Name="headerPanel"
+									Background="#00FFFFFF"
+									Grid.Column="0"
+									IsItemsHost="True"
+									Margin="2,2,2,0"
+									Grid.Row="0"
+									KeyboardNavigation.TabIndex="1"
+									ZIndex="1" />
+								<Border
+									Name="contentPanel"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									Grid.Column="0"
+									KeyboardNavigation.DirectionalNavigation="Contained"
+									Grid.Row="1"
+									KeyboardNavigation.TabIndex="2"
+									KeyboardNavigation.TabNavigation="Local">
+									<ContentPresenter
+										Name="PART_SelectedContentHost"
+										ContentSource="SelectedContent"
+										Margin="{TemplateBinding Padding}"
+										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+								</Border>
+							</Grid>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="TabControl.TabStripPlacement"
+									Value="Bottom">
+									<Setter
+										TargetName="headerPanel"
+										Property="Row"
+										Value="1" />
+									<Setter
+										TargetName="contentPanel"
+										Property="Row"
+										Value="0" />
+									<Setter
+										TargetName="RowDefinition0"
+										Property="Height"
+										Value="*" />
+									<Setter
+										TargetName="RowDefinition1"
+										Property="Height"
+										Value="Auto" />
+									<Setter
+										TargetName="headerPanel"
+										Property="Margin"
+										Value="2,0,2,2" />
+								</Trigger>
+								<Trigger
+									Property="TabControl.TabStripPlacement"
+									Value="Left">
+									<Setter
+										TargetName="headerPanel"
+										Property="Row"
+										Value="0" />
+									<Setter
+										TargetName="contentPanel"
+										Property="Row"
+										Value="0" />
+									<Setter
+										TargetName="headerPanel"
+										Property="Column"
+										Value="0" />
+									<Setter
+										TargetName="contentPanel"
+										Property="Column"
+										Value="1" />
+									<Setter
+										TargetName="ColumnDefinition0"
+										Property="Width"
+										Value="Auto" />
+									<Setter
+										TargetName="ColumnDefinition1"
+										Property="Width"
+										Value="*" />
+									<Setter
+										TargetName="RowDefinition0"
+										Property="Height"
+										Value="*" />
+									<Setter
+										TargetName="RowDefinition1"
+										Property="Height"
+										Value="0" />
+									<Setter
+										TargetName="headerPanel"
+										Property="Margin"
+										Value="2,2,0,2" />
+								</Trigger>
+								<Trigger
+									Property="TabControl.TabStripPlacement"
+									Value="Right">
+									<Setter
+										TargetName="headerPanel"
+										Property="Row"
+										Value="0" />
+									<Setter
+										TargetName="contentPanel"
+										Property="Row"
+										Value="0" />
+									<Setter
+										TargetName="headerPanel"
+										Property="Column"
+										Value="1" />
+									<Setter
+										TargetName="contentPanel"
+										Property="Column"
+										Value="0" />
+									<Setter
+										TargetName="ColumnDefinition0"
+										Property="Width"
+										Value="*" />
+									<Setter
+										TargetName="ColumnDefinition1"
+										Property="Width"
+										Value="Auto" />
+									<Setter
+										TargetName="RowDefinition0"
+										Property="Height"
+										Value="*" />
+									<Setter
+										TargetName="RowDefinition1"
+										Property="Height"
+										Value="0" />
+									<Setter
+										TargetName="headerPanel"
+										Property="Margin"
+										Value="0,2,2,2" />
+								</Trigger>
+								<Trigger
+									Property="IsEnabled"
+									Value="False">
+									<Setter
+										TargetName="templateRoot"
+										Value="{DynamicResource SystemColors.GrayTextBrushKey}"
+										Property="Foreground" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<SolidColorBrush
+				Color="#FFABAdB3"
+				x:Key="TextBox.Static.Border" />
+			<SolidColorBrush
+				Color="#FF7EB4EA"
+				x:Key="TextBox.MouseOver.Border" />
+			<SolidColorBrush
+				Color="#FF569DE5"
+				x:Key="TextBox.Focus.Border" />
+			<Style
+				TargetType="{x:Type TextBox}"
+				x:Key="TextBoxStyle1">
+				<Setter
+					Property="Background"
+					Value="{DynamicResource SystemColors.WindowBrushKey}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource TextBox.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="KeyboardNavigation.TabNavigation"
+					Value="None" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Left" />
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{x:Null}" />
+				<Setter
+					Property="UIElement.AllowDrop"
+					Value="True" />
+				<Setter
+					Property="ScrollViewer.PanningMode"
+					Value="VerticalFirst" />
+				<Setter
+					Property="Stylus.IsFlicksEnabled"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type TextBox}"
+							Triggers="">
+							<Border
+								Name="border"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Background="{TemplateBinding Background}"
+								SnapsToDevicePixels="True">
+								<ScrollViewer
+									Name="PART_ContentHost"
+									Focusable="False"
+									HorizontalScrollBarVisibility="Hidden"
+									VerticalScrollBarVisibility="Hidden"
+									Template="{DynamicResource a}" />
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<MultiTrigger>
+						<MultiTrigger.Conditions>
+							<Condition
+								Property="TextBoxBase.IsInactiveSelectionHighlightEnabled"
+								Value="True" />
+							<Condition
+								Property="TextBoxBase.IsSelectionActive"
+								Value="False" />
+						</MultiTrigger.Conditions>
+						<Setter
+							Property="TextBoxBase.SelectionBrush"
+							Value="{DynamicResource SystemColors.InactiveSelectionHighlightBrushKey}" />
+					</MultiTrigger>
+				</Style.Triggers>
+			</Style>
+			<Storyboard
+				x:Key="fadeOutTab">
+				<DoubleAnimationUsingKeyFrames
+					Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+					Storyboard.TargetName="Tabs">
+					<EasingDoubleKeyFrame
+						KeyTime="0:0:0.5"
+						Value="-590">
+						<EasingDoubleKeyFrame.EasingFunction>
+							<CubicEase
+								EasingMode="EaseInOut" />
+						</EasingDoubleKeyFrame.EasingFunction>
+					</EasingDoubleKeyFrame>
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+			<Storyboard
+				x:Key="fadeInTab">
+				<DoubleAnimationUsingKeyFrames
+					Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+					Storyboard.TargetName="Tabs">
+					<EasingDoubleKeyFrame
+						KeyTime="0"
+						Value="590">
+						<EasingDoubleKeyFrame.EasingFunction>
+							<CubicEase
+								EasingMode="EaseInOut" />
+						</EasingDoubleKeyFrame.EasingFunction>
+					</EasingDoubleKeyFrame>
+					<EasingDoubleKeyFrame
+						KeyTime="0:0:0.4"
+						Value="0">
+						<EasingDoubleKeyFrame.EasingFunction>
+							<CubicEase
+								EasingMode="EaseInOut" />
+						</EasingDoubleKeyFrame.EasingFunction>
+					</EasingDoubleKeyFrame>
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+			<Style
+				TargetType="{x:Type TextBox}"
+				x:Key="textbox">
+				<Setter
+					Property="Background"
+					Value="{DynamicResource SystemColors.WindowBrushKey}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource TextBox.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="KeyboardNavigation.TabNavigation"
+					Value="None" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Left" />
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{x:Null}" />
+				<Setter
+					Property="UIElement.AllowDrop"
+					Value="True" />
+				<Setter
+					Property="ScrollViewer.PanningMode"
+					Value="VerticalFirst" />
+				<Setter
+					Property="Stylus.IsFlicksEnabled"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type TextBox}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary>
+									<Storyboard
+										x:Key="keyboardfocused">
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.2"
+												Value="#FF448AFF" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard
+										x:Key="keyboardunfocued">
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.2"
+												Value="#FFABADB3" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard
+										x:Key="mouseover">
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<EasingColorKeyFrame
+												KeyTime="0:0:0.2"
+												Value="#FF94B1E2" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+									<Storyboard
+										x:Key="byemouse">
+										<ColorAnimationUsingKeyFrames
+											Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
+											Storyboard.TargetName="border">
+											<SplineColorKeyFrame
+												KeyTime="0:0:0.2"
+												Value="#FFABADB3" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</ResourceDictionary>
+							</FrameworkTemplate.Resources>
+							<Grid>
+								<Border
+									Name="border"
+									BorderBrush="#FFABADB3"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									Background="{TemplateBinding Background}"
+									SnapsToDevicePixels="True">
+									<Grid>
+										<Label
+											Name="WaterMarkLabel"
+											Margin="1,0,0,0"
+											Content="{TemplateBinding Tag}"
+											VerticalAlignment="Center"
+											Visibility="Collapsed"
+											Foreground="#FF808080"
+											FontFamily="/auth testing v2;component/Fonts/#Poppins Medium" />
+										<ScrollViewer
+											Name="PART_ContentHost"
+											Focusable="False"
+											HorizontalScrollBarVisibility="Hidden"
+											VerticalScrollBarVisibility="Hidden"
+											Margin="0,1,0,-1"
+											FontSize="12" />
+									</Grid>
+								</Border>
+								<!--Unknown connection ID: 2-->
+								<Button
+									Name="pathBTN"
+									Style="{DynamicResource topBar}"
+									Content="?"
+									BorderBrush="#FF2D2D2D"
+									FontFamily="/fluxus installer;component/Fonts/#Poppins"
+									HorizontalAlignment="Right"
+									Width="25.083"
+									Margin="0,3,2.25,4.601"
+									Foreground="#FFC8C8C8"
+									Background="#FF232323"
+									Cursor="Hand"
+									FontSize="16"
+									Padding="1,-1,1,1" />
+							</Grid>
+							<ControlTemplate.Triggers>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition
+											Property="Text"
+											Value="" />
+									</MultiTrigger.Conditions>
+									<Setter
+										TargetName="WaterMarkLabel"
+										Property="Visibility"
+										Value="Visible" />
+								</MultiTrigger>
+								<Trigger
+									Property="UIElement.IsKeyboardFocused"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard
+											Storyboard="{StaticResource keyboardfocused}" />
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard
+											Storyboard="{StaticResource keyboardunfocued}" />
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<MultiTrigger>
+						<MultiTrigger.Conditions>
+							<Condition
+								Property="TextBoxBase.IsInactiveSelectionHighlightEnabled"
+								Value="True" />
+							<Condition
+								Property="TextBoxBase.IsSelectionActive"
+								Value="False" />
+						</MultiTrigger.Conditions>
+						<Setter
+							Property="TextBoxBase.SelectionBrush"
+							Value="{DynamicResource SystemColors.InactiveSelectionHighlightBrushKey}" />
+					</MultiTrigger>
+				</Style.Triggers>
+			</Style>
+			<ControlTemplate
+				TargetType="{x:Type ScrollViewer}"
+				x:Key="a">
+				<Grid
+					Name="Grid"
+					Background="{TemplateBinding Background}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition
+							Height="*" />
+						<RowDefinition
+							Height="Auto" />
+					</Grid.RowDefinitions>
+					<Rectangle
+						Name="Corner"
+						Grid.Column="0"
+						Fill="{DynamicResource SystemColors.ControlBrushKey}"
+						Grid.Row="1"
+						Margin="541.095,0,0,0" />
+					<ScrollContentPresenter
+						Name="PART_ScrollContentPresenter"
+						CanContentScroll="{TemplateBinding CanContentScroll}"
+						CanHorizontallyScroll="False"
+						CanVerticallyScroll="False"
+						ContentTemplate="{TemplateBinding ContentTemplate}"
+						Content="{TemplateBinding Content}"
+						Grid.Column="0"
+						Margin="0,0,27,0"
+						Grid.Row="0" />
+					<ScrollBar
+						Name="PART_VerticalScrollBar"
+						AutomationProperties.AutomationId="VerticalScrollBar"
+						Cursor="Arrow"
+						Grid.Column="0"
+						Maximum="{TemplateBinding ScrollableHeight}"
+						Minimum="0"
+						Grid.Row="0"
+						Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+						ViewportSize="{TemplateBinding ViewportHeight}"
+						Margin="551.101,0,-0.006,0"
+						Width="Auto"
+						Style="{DynamicResource ScrollBarStyle1}"
+						HorizontalAlignment="Stretch"
+						Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+						Background="{x:Null}" />
+					<ScrollBar
+						Name="PART_HorizontalScrollBar"
+						AutomationProperties.AutomationId="HorizontalScrollBar"
+						Cursor="Arrow"
+						Grid.Column="0"
+						Maximum="{TemplateBinding ScrollableWidth}"
+						Minimum="0"
+						Orientation="Horizontal"
+						Grid.Row="1"
+						Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+						ViewportSize="{TemplateBinding ViewportWidth}"
+						Margin="0,0,27,-17"
+						Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+				</Grid>
+			</ControlTemplate>
+			<SolidColorBrush
+				Color="#F0F0F0"
+				x:Key="ScrollBar.Static.Background" />
+			<SolidColorBrush
+				Color="#F0F0F0"
+				x:Key="ScrollBar.Static.Border" />
+			<SolidColorBrush
+				Color="#FFFFFF"
+				x:Key="ScrollBar.Pressed.Glyph" />
+			<SolidColorBrush
+				Color="#000000"
+				x:Key="ScrollBar.MouseOver.Glyph" />
+			<SolidColorBrush
+				Color="#BFBFBF"
+				x:Key="ScrollBar.Disabled.Glyph" />
+			<SolidColorBrush
+				Color="#606060"
+				x:Key="ScrollBar.Static.Glyph" />
+			<SolidColorBrush
+				Color="#DADADA"
+				x:Key="ScrollBar.MouseOver.Background" />
+			<SolidColorBrush
+				Color="#DADADA"
+				x:Key="ScrollBar.MouseOver.Border" />
+			<SolidColorBrush
+				Color="#606060"
+				x:Key="ScrollBar.Pressed.Background" />
+			<SolidColorBrush
+				Color="#606060"
+				x:Key="ScrollBar.Pressed.Border" />
+			<SolidColorBrush
+				Color="#F0F0F0"
+				x:Key="ScrollBar.Disabled.Background" />
+			<SolidColorBrush
+				Color="#F0F0F0"
+				x:Key="ScrollBar.Disabled.Border" />
+			<Style
+				TargetType="{x:Type RepeatButton}"
+				x:Key="ScrollBarButton">
+				<Setter
+					Property="FrameworkElement.FocusVisualStyle"
+					Value="{StaticResource FocusVisual}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="HorizontalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="VerticalContentAlignment"
+					Value="Center" />
+				<Setter
+					Property="Padding"
+					Value="1" />
+				<Setter
+					Property="Focusable"
+					Value="False" />
+				<Setter
+					Property="IsTabStop"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type RepeatButton}">
+							<Border
+								Name="border"
+								BorderThickness="1"
+								SnapsToDevicePixels="True"
+								BorderBrush="{StaticResource ScrollBar.Static.Border}"
+								Background="{StaticResource ScrollBar.Static.Background}">
+								<ContentPresenter
+									Name="contentPresenter"
+									Focusable="False"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									Margin="{TemplateBinding Padding}"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource ScrollBar.MouseOver.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource ScrollBar.MouseOver.Border}" />
+								</Trigger>
+								<Trigger
+									Property="IsPressed"
+									Value="True">
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource ScrollBar.Pressed.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource ScrollBar.Pressed.Border}" />
+								</Trigger>
+								<Trigger
+									Property="IsEnabled"
+									Value="False">
+									<Setter
+										TargetName="contentPresenter"
+										Property="UIElement.Opacity"
+										Value="0.56" />
+									<Setter
+										TargetName="border"
+										Property="Background"
+										Value="{StaticResource ScrollBar.Disabled.Background}" />
+									<Setter
+										TargetName="border"
+										Property="BorderBrush"
+										Value="{StaticResource ScrollBar.Disabled.Border}" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type RepeatButton}"
+				x:Key="RepeatButtonTransparent">
+				<Setter
+					Property="FrameworkElement.OverridesDefaultStyle"
+					Value="True" />
+				<Setter
+					Property="Background"
+					Value="#00FFFFFF" />
+				<Setter
+					Property="Focusable"
+					Value="False" />
+				<Setter
+					Property="IsTabStop"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type RepeatButton}">
+							<Rectangle
+								Fill="{TemplateBinding Background}"
+								Height="{TemplateBinding Height}"
+								Width="{TemplateBinding Width}" />
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<SolidColorBrush
+				Color="#A6A6A6"
+				x:Key="ScrollBar.MouseOver.Thumb" />
+			<SolidColorBrush
+				Color="#606060"
+				x:Key="ScrollBar.Pressed.Thumb" />
+			<SolidColorBrush
+				Color="#CDCDCD"
+				x:Key="ScrollBar.Static.Thumb" />
+			<Style
+				TargetType="{x:Type Thumb}"
+				x:Key="ScrollBarThumbVertical">
+				<Setter
+					Property="FrameworkElement.OverridesDefaultStyle"
+					Value="True" />
+				<Setter
+					Property="IsTabStop"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Thumb}">
+							<FrameworkTemplate.Resources>
+								<ResourceDictionary />
+							</FrameworkTemplate.Resources>
+							<Border
+								Name="rectangle"
+								Background="#FF272727"
+								Height="{TemplateBinding Height}"
+								SnapsToDevicePixels="True"
+								Width="{TemplateBinding Width}"
+								Margin="3.663,0,-3.664,-0.015">
+								<UIElement.Effect>
+									<DropShadowEffect
+										ShadowDepth="0"
+										Color="#FF666666" />
+								</UIElement.Effect>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<TriggerBase.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="rectangle">
+													<EasingColorKeyFrame
+														KeyTime="0:0:0.3"
+														Value="#FF343434" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.EnterActions>
+									<TriggerBase.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ColorAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+													Storyboard.TargetName="rectangle">
+													<SplineColorKeyFrame
+														KeyTime="0:0:0.3"
+														Value="#FF272727" />
+												</ColorAnimationUsingKeyFrames>
+											</Storyboard>
+										</BeginStoryboard>
+									</TriggerBase.ExitActions>
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type Thumb}"
+				x:Key="ScrollBarThumbHorizontal">
+				<Setter
+					Property="FrameworkElement.OverridesDefaultStyle"
+					Value="True" />
+				<Setter
+					Property="IsTabStop"
+					Value="False" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type Thumb}">
+							<Rectangle
+								Name="rectangle"
+								Height="{TemplateBinding Height}"
+								SnapsToDevicePixels="True"
+								Width="{TemplateBinding Width}"
+								Fill="{StaticResource ScrollBar.Static.Thumb}" />
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="UIElement.IsMouseOver"
+									Value="True">
+									<Setter
+										TargetName="rectangle"
+										Property="Fill"
+										Value="{StaticResource ScrollBar.MouseOver.Thumb}" />
+								</Trigger>
+								<Trigger
+									Property="Thumb.IsDragging"
+									Value="True">
+									<Setter
+										TargetName="rectangle"
+										Property="Fill"
+										Value="{StaticResource ScrollBar.Pressed.Thumb}" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type ScrollBar}"
+				x:Key="ScrollBarStyle1">
+				<Setter
+					Property="Stylus.IsPressAndHoldEnabled"
+					Value="False" />
+				<Setter
+					Property="Stylus.IsFlicksEnabled"
+					Value="False" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource ScrollBar.Static.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource ScrollBar.Static.Border}" />
+				<Setter
+					Property="Foreground"
+					Value="{DynamicResource SystemColors.ControlTextBrushKey}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1,0" />
+				<Setter
+					Property="Width"
+					Value="{DynamicResource SystemParameters.VerticalScrollBarWidthKey}" />
+				<Setter
+					Property="MinWidth"
+					Value="{DynamicResource SystemParameters.VerticalScrollBarWidthKey}" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type ScrollBar}"
+							Triggers="">
+							<Grid
+								Name="Bg"
+								SnapsToDevicePixels="True"
+								Margin="0.999,0,0,0">
+								<Grid.RowDefinitions>
+									<RowDefinition
+										MaxHeight="{DynamicResource SystemParameters.VerticalScrollBarButtonHeightKey}"
+										Height="17*" />
+									<RowDefinition
+										Height="180*" />
+									<RowDefinition
+										MaxHeight="{DynamicResource SystemParameters.VerticalScrollBarButtonHeightKey}"
+										Height="17*" />
+								</Grid.RowDefinitions>
+								<Track
+									Name="PART_Track"
+									IsDirectionReversed="True"
+									IsEnabled="{TemplateBinding IsMouseOver}"
+									Grid.Row="1"
+									Grid.RowSpan="1">
+									<Track.DecreaseRepeatButton>
+										<RepeatButton
+											Command="{x:Static ScrollBar.PageUpCommand}"
+											Style="{StaticResource RepeatButtonTransparent}" />
+									</Track.DecreaseRepeatButton>
+									<Track.IncreaseRepeatButton>
+										<RepeatButton
+											Command="{x:Static ScrollBar.PageDownCommand}"
+											Margin="10,0,0,0"
+											Style="{StaticResource RepeatButtonTransparent}" />
+									</Track.IncreaseRepeatButton>
+									<Track.Thumb>
+										<Thumb
+											Margin="3.5,0,0,0"
+											Background="#FF000000"
+											HorizontalAlignment="Left"
+											Width="4.5"
+											Style="{StaticResource ScrollBarThumbVertical}" />
+									</Track.Thumb>
+								</Track>
+							</Grid>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<Trigger
+						Property="ScrollBar.Orientation"
+						Value="Horizontal">
+						<Setter
+							Property="Width"
+							Value="Auto" />
+						<Setter
+							Property="MinWidth"
+							Value="0" />
+						<Setter
+							Property="Height"
+							Value="{DynamicResource SystemParameters.HorizontalScrollBarHeightKey}" />
+						<Setter
+							Property="MinHeight"
+							Value="{DynamicResource SystemParameters.HorizontalScrollBarHeightKey}" />
+						<Setter
+							Property="BorderThickness"
+							Value="0,1" />
+						<Setter
+							Property="Template">
+							<Setter.Value>
+								<ControlTemplate
+									TargetType="{x:Type ScrollBar}">
+									<Grid
+										Name="Bg"
+										SnapsToDevicePixels="True">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition
+												MaxWidth="{DynamicResource SystemParameters.HorizontalScrollBarButtonWidthKey}" />
+											<ColumnDefinition
+												Width="0.00001*" />
+											<ColumnDefinition
+												MaxWidth="{DynamicResource SystemParameters.HorizontalScrollBarButtonWidthKey}" />
+										</Grid.ColumnDefinitions>
+										<Border
+											BorderBrush="{TemplateBinding BorderBrush}"
+											BorderThickness="{TemplateBinding BorderThickness}"
+											Background="{TemplateBinding Background}"
+											Grid.Column="1" />
+										<RepeatButton
+											Name="PART_LineLeftButton"
+											Command="{x:Static ScrollBar.LineLeftCommand}"
+											IsEnabled="{TemplateBinding IsMouseOver}"
+											Style="{StaticResource ScrollBarButton}">
+											<Path
+												Name="ArrowLeft"
+												Data="M3.18,7 C3.18,7 5,7 5,7 C5,7 1.81,3.5 1.81,3.5 C1.81,3.5 5,0 5,0 C5,0 3.18,0 3.18,0 C3.18,0 0,3.5 0,3.5 C0,3.5 3.18,7 3.18,7"
+												Margin="3"
+												Stretch="Uniform"
+												Fill="{StaticResource ScrollBar.Static.Glyph}" />
+										</RepeatButton>
+										<Track
+											Name="PART_Track"
+											Grid.Column="1"
+											IsEnabled="{TemplateBinding IsMouseOver}">
+											<Track.DecreaseRepeatButton>
+												<RepeatButton
+													Command="{x:Static ScrollBar.PageLeftCommand}"
+													Style="{StaticResource RepeatButtonTransparent}" />
+											</Track.DecreaseRepeatButton>
+											<Track.IncreaseRepeatButton>
+												<RepeatButton
+													Command="{x:Static ScrollBar.PageRightCommand}"
+													Style="{StaticResource RepeatButtonTransparent}" />
+											</Track.IncreaseRepeatButton>
+											<Track.Thumb>
+												<Thumb
+													Style="{StaticResource ScrollBarThumbHorizontal}" />
+											</Track.Thumb>
+										</Track>
+										<RepeatButton
+											Name="PART_LineRightButton"
+											Grid.Column="2"
+											Command="{x:Static ScrollBar.LineRightCommand}"
+											IsEnabled="{TemplateBinding IsMouseOver}"
+											Style="{StaticResource ScrollBarButton}">
+											<Path
+												Name="ArrowRight"
+												Data="M1.81,7 C1.81,7 0,7 0,7 C0,7 3.18,3.5 3.18,3.5 C3.18,3.5 0,0 0,0 C0,0 1.81,0 1.81,0 C1.81,0 5,3.5 5,3.5 C5,3.5 1.81,7 1.81,7"
+												Margin="3"
+												Stretch="Uniform"
+												Fill="{StaticResource ScrollBar.Static.Glyph}" />
+										</RepeatButton>
+									</Grid>
+									<ControlTemplate.Triggers>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition
+													Value="true"
+													Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" />
+												<Condition
+													Value="true"
+													Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" />
+											</MultiDataTrigger.Conditions>
+											<Setter
+												TargetName="ArrowRight"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.Pressed.Glyph}" />
+										</MultiDataTrigger>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition
+													Value="true"
+													Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" />
+												<Condition
+													Value="true"
+													Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" />
+											</MultiDataTrigger.Conditions>
+											<Setter
+												TargetName="ArrowLeft"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.Pressed.Glyph}" />
+										</MultiDataTrigger>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition
+													Value="true"
+													Binding="{Binding IsMouseOver, ElementName=PART_LineRightButton}" />
+												<Condition
+													Value="false"
+													Binding="{Binding IsPressed, ElementName=PART_LineRightButton}" />
+											</MultiDataTrigger.Conditions>
+											<Setter
+												TargetName="ArrowRight"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.MouseOver.Glyph}" />
+										</MultiDataTrigger>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition
+													Value="true"
+													Binding="{Binding IsMouseOver, ElementName=PART_LineLeftButton}" />
+												<Condition
+													Value="false"
+													Binding="{Binding IsPressed, ElementName=PART_LineLeftButton}" />
+											</MultiDataTrigger.Conditions>
+											<Setter
+												TargetName="ArrowLeft"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.MouseOver.Glyph}" />
+										</MultiDataTrigger>
+										<Trigger
+											Property="IsEnabled"
+											Value="False">
+											<Setter
+												TargetName="ArrowLeft"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.Disabled.Glyph}" />
+											<Setter
+												TargetName="ArrowRight"
+												Property="Fill"
+												Value="{StaticResource ScrollBar.Disabled.Glyph}" />
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<Storyboard
+				x:Key="loaded">
+				<DoubleAnimationUsingKeyFrames
+					Storyboard.TargetProperty="(UIElement.Opacity)"
+					Storyboard.TargetName="window">
+					<EasingDoubleKeyFrame
+						KeyTime="0"
+						Value="0" />
+					<EasingDoubleKeyFrame
+						KeyTime="0:0:0.3"
+						Value="1" />
+				</DoubleAnimationUsingKeyFrames>
+				<DoubleAnimationUsingKeyFrames
+					Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)"
+					Storyboard.TargetName="grid">
+					<EasingDoubleKeyFrame
+						KeyTime="0"
+						Value="8.004" />
+					<EasingDoubleKeyFrame
+						KeyTime="0:0:0.3"
+						Value="0">
+						<EasingDoubleKeyFrame.EasingFunction>
+							<CircleEase
+								EasingMode="EaseOut" />
+						</EasingDoubleKeyFrame.EasingFunction>
+					</EasingDoubleKeyFrame>
+				</DoubleAnimationUsingKeyFrames>
+			</Storyboard>
+			<SolidColorBrush
+				Color="#FF06B025"
+				x:Key="ProgressBar.Progress" />
+			<SolidColorBrush
+				Color="#FFE6E6E6"
+				x:Key="ProgressBar.Background" />
+			<SolidColorBrush
+				Color="#FFBCBCBC"
+				x:Key="ProgressBar.Border" />
+			<Style
+				TargetType="{x:Type ProgressBar}"
+				x:Key="customProg">
+				<Setter
+					Property="Foreground"
+					Value="{StaticResource ProgressBar.Progress}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource ProgressBar.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource ProgressBar.Border}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type ProgressBar}">
+							<Grid
+								Name="TemplateRoot">
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup
+										x:Name="CommonStates">
+										<VisualState
+											x:Name="Determinate" />
+										<VisualState
+											x:Name="Indeterminate">
+											<Storyboard
+												RepeatBehavior="Forever">
+												<DoubleAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+													Storyboard.TargetName="Animation">
+													<EasingDoubleKeyFrame
+														KeyTime="0"
+														Value="0.25" />
+													<EasingDoubleKeyFrame
+														KeyTime="0:0:1"
+														Value="0.25" />
+													<EasingDoubleKeyFrame
+														KeyTime="0:0:2"
+														Value="0.25" />
+												</DoubleAnimationUsingKeyFrames>
+												<PointAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)"
+													Storyboard.TargetName="Animation">
+													<EasingPointKeyFrame
+														KeyTime="0"
+														Value="-0.5,0.5" />
+													<EasingPointKeyFrame
+														KeyTime="0:0:1"
+														Value="0.5,0.5" />
+													<EasingPointKeyFrame
+														KeyTime="0:0:2"
+														Value="1.5,0.5" />
+												</PointAnimationUsingKeyFrames>
+											</Storyboard>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+								<Border
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									Background="{TemplateBinding Background}" />
+								<Rectangle
+									Name="PART_Track" />
+								<Grid
+									Name="PART_Indicator"
+									ClipToBounds="True"
+									HorizontalAlignment="Left"
+									Margin="0,2.167,0,2.166"
+									Width="316.666">
+									<Rectangle
+										Name="Indicator"
+										Fill="{TemplateBinding Foreground}" />
+									<Rectangle
+										Name="Animation"
+										Fill="{TemplateBinding Foreground}"
+										RenderTransformOrigin="0.5,0.5">
+										<UIElement.RenderTransform>
+											<TransformGroup>
+												<ScaleTransform />
+												<SkewTransform />
+												<RotateTransform />
+												<TranslateTransform />
+											</TransformGroup>
+										</UIElement.RenderTransform>
+									</Rectangle>
+								</Grid>
+							</Grid>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="ProgressBar.Orientation"
+									Value="Vertical">
+									<Setter
+										TargetName="TemplateRoot"
+										Property="FrameworkElement.LayoutTransform">
+										<Setter.Value>
+											<RotateTransform
+												Angle="-90" />
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+								<Trigger
+									Property="ProgressBar.IsIndeterminate"
+									Value="True">
+									<Setter
+										TargetName="Indicator"
+										Property="Visibility"
+										Value="Collapsed" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style
+				TargetType="{x:Type ProgressBar}"
+				x:Key="aa">
+				<Setter
+					Property="Foreground"
+					Value="{StaticResource ProgressBar.Progress}" />
+				<Setter
+					Property="Background"
+					Value="{StaticResource ProgressBar.Background}" />
+				<Setter
+					Property="BorderBrush"
+					Value="{StaticResource ProgressBar.Border}" />
+				<Setter
+					Property="BorderThickness"
+					Value="1" />
+				<Setter
+					Property="Template">
+					<Setter.Value>
+						<ControlTemplate
+							TargetType="{x:Type ProgressBar}">
+							<Grid
+								Name="TemplateRoot">
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup
+										x:Name="CommonStates">
+										<VisualState
+											x:Name="Determinate" />
+										<VisualState
+											x:Name="Indeterminate">
+											<Storyboard
+												RepeatBehavior="Forever">
+												<DoubleAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+													Storyboard.TargetName="Animation">
+													<EasingDoubleKeyFrame
+														KeyTime="0"
+														Value="0.25" />
+													<EasingDoubleKeyFrame
+														KeyTime="0:0:1"
+														Value="0.25" />
+													<EasingDoubleKeyFrame
+														KeyTime="0:0:2"
+														Value="0.25" />
+												</DoubleAnimationUsingKeyFrames>
+												<PointAnimationUsingKeyFrames
+													Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)"
+													Storyboard.TargetName="Animation">
+													<EasingPointKeyFrame
+														KeyTime="0"
+														Value="-0.5,0.5" />
+													<EasingPointKeyFrame
+														KeyTime="0:0:1"
+														Value="0.5,0.5" />
+													<EasingPointKeyFrame
+														KeyTime="0:0:2"
+														Value="1.5,0.5" />
+												</PointAnimationUsingKeyFrames>
+											</Storyboard>
+										</VisualState>
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+								<Border
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}"
+									Background="{TemplateBinding Background}" />
+								<Rectangle
+									Name="PART_Track" />
+								<Grid
+									Name="PART_Indicator"
+									ClipToBounds="True"
+									HorizontalAlignment="Left">
+									<UIElement.Effect>
+										<DropShadowEffect
+											ShadowDepth="0"
+											Color="#FF265CAA" />
+									</UIElement.Effect>
+									<Rectangle
+										Name="Indicator"
+										Fill="{TemplateBinding Foreground}" />
+									<Rectangle
+										Name="Animation"
+										Fill="{TemplateBinding Foreground}"
+										RenderTransformOrigin="0.5,0.5">
+										<UIElement.RenderTransform>
+											<TransformGroup>
+												<ScaleTransform />
+												<SkewTransform />
+												<RotateTransform />
+												<TranslateTransform />
+											</TransformGroup>
+										</UIElement.RenderTransform>
+									</Rectangle>
+								</Grid>
+							</Grid>
+							<ControlTemplate.Triggers>
+								<Trigger
+									Property="ProgressBar.Orientation"
+									Value="Vertical">
+									<Setter
+										TargetName="TemplateRoot"
+										Property="FrameworkElement.LayoutTransform">
+										<Setter.Value>
+											<RotateTransform
+												Angle="-90" />
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+								<Trigger
+									Property="ProgressBar.IsIndeterminate"
+									Value="True">
+									<Setter
+										TargetName="Indicator"
+										Property="Visibility"
+										Value="Collapsed" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Storyboard
+				x:Key="doInstallationStart" />
+		</ResourceDictionary>
+	</FrameworkElement.Resources>
+	<FrameworkElement.Triggers>
+		<EventTrigger
+			RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard
+				Storyboard="{StaticResource loaded}" />
+		</EventTrigger>
+	</FrameworkElement.Triggers>
+	<Grid
+		Name="grid"
+		Background="#FF18191A"
+		RenderTransformOrigin="0.5,0.5">
+		<UIElement.RenderTransform>
+			<TransformGroup>
+				<ScaleTransform />
+				<SkewTransform />
+				<RotateTransform />
+				<TranslateTransform />
+			</TransformGroup>
+		</UIElement.RenderTransform>
+		<Border
+			BorderThickness="1"
+			Height="32.399"
+			VerticalAlignment="Top"
+			BorderBrush="#FF242526"
+			Background="#FF242526"
+			MouseLeftButtonDown="dragUI">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Image
+					RenderOptions.BitmapScalingMode="HighQuality"
+					HorizontalAlignment="Left"
+					Width="30.25"
+					Margin="1.75,2.25,0,2.25"
+					Source="FluxusLogo-NEW3.png"
+					Opacity="0.4" />
+				<Button
+					Name="Submit"
+					Style="{DynamicResource topBar}"
+					Content=""
+					FontFamily="Segoe MDL2 Assets"
+					HorizontalAlignment="Right"
+					Width="25.083"
+					Margin="0,2.25,3,2.75"
+					Foreground="#FFC8C8C8"
+					Background="#FF242526"
+					Cursor="Hand"
+					FontSize="9"
+					BorderBrush="{x:Null}"
+					Click="doCancel" />
+			</Grid>
+		</Border>
+		<Button
+			Name="cancelBTN"
+			Style="{DynamicResource topBar}"
+			Content="Cancel"
+			BorderBrush="#FF242526"
+			FontFamily="/fluxus installer;component/Fonts/#Poppins"
+			Margin="0,0,73.416,4.666"
+			Foreground="#FFC8C8C8"
+			Background="#FF232323"
+			Cursor="Hand"
+			HorizontalAlignment="Right"
+			Width="53.417"
+			Height="26.816"
+			VerticalAlignment="Bottom"
+			Padding="1,0,1,1"
+			Click="doCancel" />
+		<Button
+			Name="nextBTN"
+			Style="{DynamicResource bottomBar}"
+			Content="Next"
+			BorderBrush="#FF2D2D2D"
+			FontFamily="/fluxus installer;component/Fonts/#Poppins"
+			Margin="0,0,4.666,4.666"
+			Foreground="#FFC8C8C8"
+			Background="#FF232323"
+			Cursor="Hand"
+			HorizontalAlignment="Right"
+			Width="63.75"
+			Padding="1,0,1,1"
+			FontSize="14"
+			Height="26.816"
+			VerticalAlignment="Bottom"
+			Click="doNext" />
+		<TabControl
+			Name="Tabs"
+			Style="{DynamicResource transparenttab}"
+			HorizontalAlignment="Left"
+			Height="260.267"
+			Margin="10,37.399,0,0"
+			VerticalAlignment="Top"
+			Width="579.762"
+			RenderTransformOrigin="0.5,0.5">
+			<UIElement.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform />
+					<SkewTransform />
+					<RotateTransform />
+					<TranslateTransform />
+				</TransformGroup>
+			</UIElement.RenderTransform>
+			<TabItem
+				Height="0">
+				<Grid>
+					<TextBox
+						Name="eulaBox"
+						IsReadOnly="True"
+						HorizontalAlignment="Left"
+						VerticalScrollBarVisibility="Visible"
+						Margin="3.667,24.667,0,0"
+						TextWrapping="Wrap"
+						Width="570.095"
+						BorderBrush="#FF28292B"
+						SelectionBrush="#FF181B21"
+						Foreground="#FFC8C8C8"
+						Style="{DynamicResource TextBoxStyle1}"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						Text="&#xD;&#xA;End-User License Agreement (EULA) of Fluxus&#xD;&#xA;&#xD;&#xA;This End-User License Agreement (&quot;EULA&quot;) is a legal agreement between you and Fluxus&#xD;&#xA;&#xD;&#xA;This EULA agreement governs your acquisition and use of our Fluxus software (&quot;Software&quot;) directly from Fluxus or indirectly through a Fluxus authorized reseller or distributor (a &quot;Reseller&quot;).&#xD;&#xA;&#xD;&#xA;Please read this EULA agreement carefully before completing the installation process and using the Fluxus software. It provides a license to use the Fluxus software and contains warranty information and liability disclaimers.&#xD;&#xA;&#xD;&#xA;If you register for a free trial of the Fluxus software, this EULA agreement will also govern that trial. By clicking &quot;accept&quot; or installing and/or using the Fluxus software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.&#xD;&#xA;&#xD;&#xA;If you are entering into this EULA agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity and its affiliates to these terms and conditions. If you do not have such authority or if you do not agree with the terms and conditions of this EULA agreement, do not install or use the Software, and you must not accept this EULA agreement.&#xD;&#xA;&#xD;&#xA;This EULA agreement shall apply only to the Software supplied by Fluxus herewith regardless of whether other software is referred to or described herein. The terms also apply to any Fluxus updates, supplements, Internet-based services, and support services for the Software, unless other terms accompany those items on delivery. If so, those terms apply. &#xD;&#xA;License Grant&#xD;&#xA;&#xD;&#xA;Fluxus hereby grants you a personal, non-transferable, non-exclusive licence to use the Fluxus software on your devices in accordance with the terms of this EULA agreement.&#xD;&#xA;&#xD;&#xA;You are permitted to load the Fluxus software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the Fluxus software. You agree that Fluxus software and Fluxus software developers can and will collect your information (for example: IP Address) and hold the right to release them at any point for any reason (for example: Posing threat Fluxus and/or its developers).&#xD;&#xA;&#xD;&#xA;You are not permitted to:&#xD;&#xA;&#xD;&#xA;    Edit, alter, modify, adapt, translate or otherwise change the whole or any part of the Software nor permit the whole or any part of the Software to be combined with or become incorporated in any other software, nor decompile, disassemble or reverse engineer the Software or attempt to do any such things&#xD;&#xA;    Reproduce, copy, distribute, resell or otherwise use the Software for any commercial purpose&#xD;&#xA;    Allow any third party to use the Software on behalf of or for the benefit of any third party&#xD;&#xA;    Use the Software in any way which breaches any applicable local, national or international law&#xD;&#xA;    use the Software for any purpose that Fluxus considers is a breach of this EULA agreement&#xD;&#xA;    Use a bypass to skip the key system if the key system is prompted. &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Intellectual Property and Ownership&#xD;&#xA;&#xD;&#xA;Fluxus shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of Fluxus.&#xD;&#xA;&#xD;&#xA;Fluxus reserves the right to grant licences to use the Software to third parties.&#xD;&#xA;Fluxus reserves the right to refuse any refund or accommodation for anything that occurs. Fluxus reserves the right to discontinue any part of the Fluxus brand without notice or refund or reimbursement. &#xD;&#xA;&#xD;&#xA;Termination&#xD;&#xA;&#xD;&#xA;This EULA agreement is effective from the date you first use the Software and shall continue until terminated. You may terminate it at any time upon written notice to Fluxus.&#xD;&#xA;&#xD;&#xA;It will also terminate immediately if you fail to comply with any term of this EULA agreement. Upon such termination, the licenses granted by this EULA agreement will immediately terminate and you agree to stop all access and use of the Software. The provisions that by their nature continue and survive will survive any termination of this EULA agreement.&#xD;&#xA;Governing Law&#xD;&#xA;&#xD;&#xA;This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of the United States."
+						Background="{x:Null}" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="3.667,0,0,230.6"
+						TextWrapping="Wrap"
+						Width="104"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+						Height="19.5"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Fluxus : EULA" />
+				</Grid>
+			</TabItem>
+			<TabItem
+				Height="0">
+				<Grid>
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="3.667,0,0,230.6"
+						TextWrapping="Wrap"
+						Width="104"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+						Height="19.5"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Fluxus : Path" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="3.667,0,0,176.1"
+						TextWrapping="Wrap"
+						Width="560.095"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						Height="53.5"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Where should we install Fluxus? This will be where you can access the Fluxus executable to run and exploit the ROBLOX client for your favour." />
+					<Button
+						Name="Submit_Copy"
+						HorizontalContentAlignment="Left"
+						Style="{DynamicResource topBar}"
+						BorderBrush="#FF2D2D2D"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						HorizontalAlignment="Center"
+						Width="407"
+						VerticalAlignment="Center"
+						Foreground="#FFC8C8C8"
+						Background="#FF232323"
+						Cursor="Hand"
+						FontSize="14"
+						Padding="8,1,1,1"
+						Margin="83,87,84,125"
+						Click="selectInstall">
+						<TextBlock>
+							<Run
+								Text=""
+								FontFamily="Segoe MDL2 Assets"
+								FontSize="16"
+								BaselineAlignment="Center" /> <Run
+								Text="CURRENT PATH"
+								FontSize="10"
+								FontFamily="/fluxus installer;component/Fonts/#Poppins"
+								Foreground="#FF707070" /><LineBreak /><Run
+								Text="Install Fluxus at the current running path in a new folder." /></TextBlock>
+					</Button>
+					<Button
+						Name="Submit_Copy1"
+						HorizontalContentAlignment="Left"
+						Style="{DynamicResource topBar}"
+						BorderBrush="#FF2D2D2D"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						HorizontalAlignment="Center"
+						Width="407"
+						VerticalAlignment="Center"
+						Foreground="#FFC8C8C8"
+						Background="#FF232323"
+						Cursor="Hand"
+						FontSize="14"
+						Padding="8,1,1,1"
+						Margin="83,130,84,82"
+						Click="showPathSelector">
+						<TextBlock>
+							<Run
+								Text=""
+								FontFamily="Segoe MDL2 Assets"
+								FontSize="16"
+								BaselineAlignment="Center" />
+							<Run
+								Text=" " />
+							<Run
+								Text="CUSTOM DIRECTORY"
+								FontSize="10"
+								FontFamily="/fluxus installer;component/Fonts/#Poppins"
+								Foreground="#FF707070" />
+							<LineBreak />
+							<Run
+								Text="Install Fluxus at a custom directory." />
+						</TextBlock>
+					</Button>
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="4,0,0,170"
+						TextWrapping="Wrap"
+						Width="406"
+						Foreground="#FFADAEB0"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						Height="19"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Not sure? Choose Current Path!" />
+				</Grid>
+			</TabItem>
+			<TabItem
+				Height="0"
+				Loaded="onInstallSelected">
+				<Grid>
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="3.667,0,0,230.6"
+						TextWrapping="Wrap"
+						Width="214"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+						Height="19.5"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Fluxus : Download Process" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="3.667,0,0,143.433"
+						TextWrapping="Wrap"
+						Width="560.095"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						Height="86.167"
+						VerticalAlignment="Bottom"
+						FontSize="14">
+						<Run
+							Text="Let's get straight to it! We'll start downloading Fluxus. You're not gonna really be seeing anything here, we're doing our magic in the background. You could always go and play a game, get a drink or even something to eat, " />
+						<Run
+							Text="just hold tight"
+							FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+							Foreground="#FFA0A0A0" />
+						<Run
+							Text="." />
+						<LineBreak />
+					</TextBlock>
+					<TextBlock
+						HorizontalAlignment="Left"
+						TextWrapping="Wrap"
+						Width="560.095"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+						Height="24.5"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Padding="0">
+						<Run
+							Text="This installation process was brought to you by " />
+						<Run
+							Text="ffaded"
+							TextDecorations="Underline" />
+						<Run
+							Text=" &amp; " />
+						<Hyperlink
+							Foreground="#FF265CAA"
+							TextDecorations="{x:Null}"
+							Click="doSite">
+							<Run
+								Text="fluxteam.net"
+								TextDecorations="Underline" />
+						</Hyperlink>
+					</TextBlock>
+					<TextBlock
+						Name="statz"
+						HorizontalAlignment="Left"
+						Margin="0,0,0,118.933"
+						TextWrapping="Wrap"
+						Foreground="#FF6D6E70"
+						FontFamily="/fluxus installer;component/Fonts/#Poppins"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Status : Checking stuffz" />
+				</Grid>
+			</TabItem>
+			<TabItem
+				Height="0"
+				Loaded="testnigga">
+				<Grid>
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="10,0,0,208"
+						TextWrapping="Wrap"
+						Width="274"
+						Foreground="#FFFFFFFF"
+						Height="32"
+						VerticalAlignment="Bottom"
+						FontSize="20"
+						Text="Thank you for installing Fluxus!" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="10,0,0,188"
+						TextWrapping="Wrap"
+						Width="274"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Here are some cool tips about Fluxus:" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="20,0,0,163"
+						TextWrapping="Wrap"
+						Width="544"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="&gt; Fluxus allows you to inject into multiple ROBLOX processes!" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="20,0,0,143"
+						TextWrapping="Wrap"
+						Width="544"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="&gt; Fluxus supports multiple languages!" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="20,0,0,123"
+						TextWrapping="Wrap"
+						Width="544"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="&gt; Fluxus has support for game based autoexec!" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="10,0,0,87"
+						TextWrapping="Wrap"
+						Width="274"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="Do you need help?" />
+					<TextBlock
+						Name="discord"
+						HorizontalAlignment="Left"
+						Margin="20,0,0,62"
+						TextWrapping="Wrap"
+						Width="544"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="14"
+						Text="&gt; Join our discord at www.fluxteam.net/external-files/discord.php for help!" />
+					<TextBlock
+						HorizontalAlignment="Left"
+						Margin="10,0,0,10"
+						TextWrapping="Wrap"
+						Width="234"
+						Foreground="#FFD3CFCF"
+						Height="20"
+						VerticalAlignment="Bottom"
+						FontSize="17"
+						Text="Fluxus will start in 5 seconds." />
+				</Grid>
+			</TabItem>
+		</TabControl>
+		<TextBlock
+			HorizontalAlignment="Left"
+			TextWrapping="Wrap"
+			Width="256"
+			Foreground="#FF6D6E70"
+			FontFamily="/fluxus installer;component/Fonts/#Poppins"
+			Height="21.5"
+			VerticalAlignment="Bottom"
+			Margin="10,0,0,5.374">
+			<Run
+				Text="Need help? Click " />
+			<Hyperlink
+				Foreground="#FF265CAA"
+				FontFamily="/fluxus installer;component/Fonts/#Poppins SemiBold"
+				TextDecorations="{x:Null}"
+				Click="doDisc">
+				<Run
+					Text="Here" />
+			</Hyperlink>
+			<Run
+				Text=" To join our Discord" />
+			<Run
+				Text="." />
+		</TextBlock>
+		<Path
+			Data="M-6.75,27.25"
+			HorizontalAlignment="Left"
+			Height="1"
+			Margin="-6.75,27.25,0,0"
+			Stretch="Fill"
+			Stroke="#FF000000"
+			VerticalAlignment="Top"
+			Width="1" />
+	</Grid>
+</Window>

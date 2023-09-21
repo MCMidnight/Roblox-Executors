@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{471FA74D-4955-46C1-89D8-543E31DB7611}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fluxus V7</RootNamespace>
+    <AssemblyName>Fluxus V7</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60DC8134-EBA5-43B8-BCC9-BB4BC16C2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Fluxus V7.ico</ApplicationIcon>
+    <StartupObject>fluxus_installer.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management.Automation" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="-Module-.cs" />
+    <Compile Include="Costura\AssemblyLoader.cs" />
+    <Compile Include="Fluxus V7_ProcessedByFody.cs" />
+    <Compile Include="fluxus_installer\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fluxus_installer\Classes\Helpers.cs" />
+    <Compile Include="fluxus_installer\helper.xaml.cs">
+      <DependentUpon>helper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fluxus_installer\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="fluxus_installer\Properties\Resources.cs" />
+    <Compile Include="fluxus_installer\Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Costura\cake\powershell\dll.compressed" />
+    <EmbeddedResource Include="Costura\cake\powershell\pdb.compressed" />
+    <EmbeddedResource Include="Costura\costura\dll.compressed" />
+    <EmbeddedResource Include="Costura\costura\pdb.compressed" />
+    <EmbeddedResource Include="Costura\metadata" />
+    <EmbeddedResource Include="Costura\microsoft\win32\primitives\dll.compressed" />
+    <EmbeddedResource Include="Costura\microsoft\windowsapicodepack\dll.compressed" />
+    <EmbeddedResource Include="Costura\microsoft\windowsapicodepack\shell\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\appcontext\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\buffers\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\console\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\diagnostics\diagnosticsource\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\diagnostics\tracing\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\globalization\calendars\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\io\compression\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\io\compression\zipfile\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\io\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\io\filesystem\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\io\filesystem\primitives\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\linq\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\linq\expressions\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\management\automation\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\memory\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\net\http\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\net\sockets\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\numerics\vectors\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\reflection\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\runtime\compilerservices\unsafe\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\runtime\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\runtime\extensions\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\runtime\interopservices\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\runtime\interopservices\runtimeinformation\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\security\cryptography\algorithms\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\security\cryptography\encoding\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\security\cryptography\primitives\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\security\cryptography\x509certificates\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\text\regularexpressions\dll.compressed" />
+    <EmbeddedResource Include="Costura\system\xml\readerwriter\dll.compressed" />
+    <EmbeddedResource Include="fluxus_installer\Properties\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="fluxus_installer\Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="fluxus_installer\App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="fluxus_installer\helper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="fluxus_installer\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="fluxuslogo-new3.png" />
+    <Resource Include="fluxuslogo.ico" />
+    <Resource Include="fonts\poppins-black.ttf" />
+    <Resource Include="fonts\poppins-blackitalic.ttf" />
+    <Resource Include="fonts\poppins-bold.ttf" />
+    <Resource Include="fonts\poppins-bolditalic.ttf" />
+    <Resource Include="fonts\poppins-extrabold.ttf" />
+    <Resource Include="fonts\poppins-extrabolditalic.ttf" />
+    <Resource Include="fonts\poppins-extralight.ttf" />
+    <Resource Include="fonts\poppins-extralightitalic.ttf" />
+    <Resource Include="fonts\poppins-italic.ttf" />
+    <Resource Include="fonts\poppins-light.ttf" />
+    <Resource Include="fonts\poppins-lightitalic.ttf" />
+    <Resource Include="fonts\poppins-medium.ttf" />
+    <Resource Include="fonts\poppins-mediumitalic.ttf" />
+    <Resource Include="fonts\poppins-regular.ttf" />
+    <Resource Include="fonts\poppins-semibold.ttf" />
+    <Resource Include="fonts\poppins-semibolditalic.ttf" />
+    <Resource Include="fonts\poppins-thin.ttf" />
+    <Resource Include="fonts\poppins-thinitalic.ttf" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
